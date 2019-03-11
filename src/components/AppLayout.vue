@@ -6,18 +6,24 @@
       </div>
       <div>My shirt shop</div>
     </header>
+    <NavMenu/>
     <router-view/>
+    <router-link v-bind:to="{ name:'faq' }">FAQ</router-link>
   </div>
 </template>
+<script>
+import NavMenu from "./NavMenu.vue";
+export default {
+  components: {
+    NavMenu
+  }
+};
+</script>
+
 <style lang="stylus">
 @import '../style/main';
 </style>
 
 <style lang="stylus" scoped>
-.header {
-  .img {
-    width: 64px;
-    height: 64px;
-  }
-}
+@import '../style/main';
 </style>
