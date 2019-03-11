@@ -9,6 +9,10 @@
     <router-view/>
   </div>
 </template>
+<style lang="stylus">
+@import '../style/main';
+</style>
+
 <style lang="stylus" scoped>
 .header {
   .img {
