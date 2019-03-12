@@ -12,12 +12,14 @@
   </main>
 </template>
 <script>
+import RemoteData from "../mixins/RemoteData";
 export default {
+  mixins: [RemoteData],
   data() {
     return {
       questions: [],
       error: null,
-      loading: false
+      loading: false,
     };
   },
   // created(){
@@ -36,7 +38,7 @@ export default {
   async created() {
     this.loading = true;
     try {
-        this.questions = await this.$fetch('questions')
+      this.questions = await this.$fetch("questions");
     } catch (e) {
       this.error = e;
     }
