@@ -40,6 +40,7 @@ export default {
   //   })
   // }
   async created() {
+    console.log(this.$state)
     this.loading = true;
     try {
       this.questions = await this.$fetch("questions");
