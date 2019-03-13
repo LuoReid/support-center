@@ -5,10 +5,11 @@
       v-bind:class="inputClass"
       v-bind:name="name"
       v-bind:type="type"
-      v-bind:value.prop="value"
+      v-bind:value="text"
       v-bind:placeholder="placehoder"
       v-on:input="update"
-    />
+    >
+    <!-- v-bind:value.prop="value" -->
   </div>
 </template>
 
@@ -17,9 +18,10 @@ export default {
   props: {
     name: { type: String },
     type: { type: String, default: "text" },
-    value: { required: true },
+    value: { required: false },
     placehoder: { type: String },
-    invalid: { type: Boolean, default: false }
+    invalid: { type: Boolean, default: false },
+    text: { required: true }
   },
   computed: {
     inputClass() {
@@ -28,11 +30,16 @@ export default {
       };
     }
   },
-  methods:{      
+  methods: {
     update(event) {
       console.log(event.currentTarget.value);
-      this.$emit('input',event.currentTarget.value)
+      //   this.$emit('input',event.currentTarget.value)
+      this.$emit("update", event.currentTarget.value);
     }
+  },
+  model: {
+    prop: "text",
+    event: "update"
   }
 };
 </script>
