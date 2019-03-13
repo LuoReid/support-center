@@ -4,9 +4,10 @@
       class="input"
       v-bind:class="inputClass"
       v-bind:name="name"
-      v-bind:type="text"
+      v-bind:type="type"
       v-bind:value.prop="value"
       v-bind:placeholder="placehoder"
+      v-on:input="update"
     />
   </div>
 </template>
@@ -25,6 +26,12 @@ export default {
       return {
         invalid: this.invalid
       };
+    }
+  },
+  methods:{      
+    update(event) {
+      console.log(event.currentTarget.value);
+      this.$emit('input',event.currentTarget.value)
     }
   }
 };
