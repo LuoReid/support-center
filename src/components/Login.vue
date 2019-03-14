@@ -13,7 +13,7 @@
         <FormInput name="username" v-model="username" placeholder="Username"/>
         <FormInput name="password" type="password" v-model="password" placeholder="Password"/>
 
-        <template v-if="model === 'signup'">
+        <template v-if="mode === 'signup'">
           <FormInput
             name="verify-password"
             type="password"
@@ -24,12 +24,12 @@
           <FormInput name="email" type="email" v-model="email" placeholder="Email"/>
         </template>
         <template slot="actions">
-          <template v-if="model === 'login'">
-            <button type="button" class="secondary" v-on:click="model = 'signup'">Sign up</button>
+          <template v-if="mode === 'login'">
+            <button type="button" class="secondary" v-on:click="mode = 'signup'">Sign up</button>
             <button type="submit" v-bind:disabled="!valid">Login</button>
           </template>
-          <template v-else-if="model === 'signup'">
-            <button type="button" class="secondary" v-on:click="model = 'login'">Back to login</button>
+          <template v-else-if="mode === 'signup'">
+            <button type="button" class="secondary" v-on:click="mode = 'login'">Back to login</button>
             <button type="submit" v-bind:disabled="!valid">Create account</button>
           </template>
         </template>
@@ -43,26 +43,34 @@ export default {
   data() {
     return {
       username: "",
-      model: "login",
+      mode: "login",
       password: "",
       password2: "",
-      email: ""
+      email: "",
     };
   },
   methods: {
     async operation() {
-      await this[this.model]();
+      await this[this.mode]();
     },
     async login() {
       //TODO
     },
     async signup() {
-      //TODO
-    }
+      await this.$fetch("signup", {
+        method: "POST",
+        body: JSON.stringify({
+          username: this.username,
+          password: this.password,
+          email: this.email
+        }),
+      });
+      this.mode = 'login'
+    },    
   },
   computed: {
     title() {
-      switch (this.model) {
+      switch (this.mode) {
         case "login":
           return "Login";
         case "signup":
