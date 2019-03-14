@@ -6,7 +6,7 @@
       v-bind:name="name"
       v-bind:type="type"
       v-bind:value="text"
-      v-bind:placeholder="placehoder"
+      v-bind:placeholder="placeholder"
       v-on:input="update"
     >
     <!-- v-bind:value.prop="value" -->
@@ -19,7 +19,7 @@ export default {
     name: { type: String },
     type: { type: String, default: "text" },
     value: { required: false },
-    placehoder: { type: String },
+    placeholder: { type: String },
     invalid: { type: Boolean, default: false },
     text: { required: true }
   },
