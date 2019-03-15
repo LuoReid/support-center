@@ -2,6 +2,7 @@
   <nav class="menu">
     <router-link v-bind:to="{ name:'home'}" exact>Home</router-link>
     <router-link v-bind:to="{ name:'faq'}" exact>FAQ</router-link>
+    <router-link v-bind:to="{name:'tickets'}">Support tickets</router-link>
     <div class="spacer"></div>
     <template v-if="$state.user">
       <a>{{ $state.user.username}}</a>
@@ -14,11 +15,11 @@
 import NavMenu from "./NavMenu.vue";
 export default {
   components: { NavMenu },
-  methods:{
-    async logout(){
-      const result = await this.$fetch('logout')
-      if(result.status === 'ok'){
-        this.$state.user = null
+  methods: {
+    async logout() {
+      const result = await this.$fetch("logout");
+      if (result.status === "ok") {
+        this.$state.user = null;
       }
     }
   }
