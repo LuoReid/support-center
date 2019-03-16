@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
   console.log('to', to.name)
   if (to.meta.private && !state.user) {
     //TODO login
-    next({ name: 'login' })
+    next({ name: 'login', params: { wantedRoute: to.fullPath, } })
     return
   }
   next()
