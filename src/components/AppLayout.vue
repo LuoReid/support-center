@@ -7,8 +7,9 @@
       <div>My shirt shop</div>
     </header>
     <NavMenu/>
-    <router-view/>
-    <router-link v-bind:to="{ name:'faq' }">FAQ</router-link>
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>
   </div>
 </template>
 <script>
