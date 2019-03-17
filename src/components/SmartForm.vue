@@ -5,7 +5,7 @@
       <slot/>
       <div class="actions">
         <slot name="actions"/>
-      </div>
+      </div>      
       <div class="error" v-if="error">{{error}}</div>
     </section>
     <transition name="fade">

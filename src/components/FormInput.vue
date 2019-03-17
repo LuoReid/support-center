@@ -1,6 +1,7 @@
 <template>
   <div class="row">
-    <input
+    <component
+      v-bind:is="element"
       class="input"
       v-bind:class="inputClass"
       v-bind:name="name"
@@ -8,7 +9,8 @@
       v-bind:value="text"
       v-bind:placeholder="placeholder"
       v-on:input="update"
-    >
+      v-bind="$attrs"
+    />
     <!-- v-bind:value.prop="value" -->
   </div>
 </template>
@@ -28,6 +30,9 @@ export default {
       return {
         invalid: this.invalid
       };
+    },
+    element() {
+      return this.type === "textarea" ? this.type : "input";
     }
   },
   methods: {
