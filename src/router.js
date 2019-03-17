@@ -23,11 +23,22 @@ const routes = [
       { path: 'new', name: 'new-ticket', component: Newticket },
       { path: ':id', name: 'ticket', component: Ticket, props: route => ({ id: route.params.id }) },
     ]
-  },  
+  },
   { path: '*', component: NotFound },
 ]
 
-const router = new VueRouter({ routes, mode: 'history', })
+const router = new VueRouter({
+  routes, mode: 'history', scrollBehavior(to, from, savedPosition) {
+    // return { selector: 'h1' }
+    if(savedPosition){
+      return savedPosition
+    }
+    if (to.hash) {
+      return { selector: to.hash }
+    }
+    return { x: 0, y: 0 }
+  }
+})
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(r => r.meta.private) && !state.user) {
