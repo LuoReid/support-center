@@ -26,7 +26,9 @@
 <script>
 import SmartForm from "./SmartForm.vue";
 import FormInput from "./FormInput.vue";
+import PersistantData from "../mixins/PersistantData";
 export default {
+  mixins: [PersistantData("NewTicket", ["title", "description"])],
   components: { SmartForm, FormInput },
   data() {
     return {

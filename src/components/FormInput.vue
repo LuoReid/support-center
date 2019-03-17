@@ -6,7 +6,7 @@
       v-bind:class="inputClass"
       v-bind:name="name"
       v-bind:type="type"
-      v-bind:value="text"
+      v-bind:value.prop="text"
       v-bind:placeholder="placeholder"
       v-on:input="update"
       v-bind="$attrs"
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     update(event) {
-      console.log(event.currentTarget.value);
+      // console.log(event.currentTarget.value);
       //   this.$emit('input',event.currentTarget.value)
       this.$emit("update", event.currentTarget.value);
     }
