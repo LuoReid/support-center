@@ -26,11 +26,11 @@ const routes = [
 const router = new VueRouter({ routes, mode: 'history', })
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.private && !state.user) {
+  if (to.matched.some(r => r.meta.private) && !state.user) {
     next({ name: 'login', params: { wantedRoute: to.fullPath, } })
     return
   }
-  if (to.meta.guest && state.user) {
+  if (to.matched.some(r => r.meta.guest) && state.user) {
     next({ name: 'home' })
     return
   }
